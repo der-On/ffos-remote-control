@@ -37,17 +37,17 @@ label {
 }
 .event {
   float: left;
-  margin: 5px;
+  margin: 1.5vw;
   border-radius: 5px;
-  width: 150px;
-  height: 150px;
+  width: 48vw;
+  max-width: 150px;
+  height: 48vw;
+  max-height: 150px;
   text-align: center;
-  padding: 65px 0;
   box-sizing: border-box;
   color: #fff;
   position: relative;
   cursor: pointer;
-  transition: all 0.5s;
   font-weight: bold;
   font-size: 1.5em;
 }
@@ -98,8 +98,10 @@ label {
 .event input,
 .event .event-remove {
   display: none;
-  opacity: 0;
-  transition: all 0.5s;
+}
+.event input,
+.event .event-name {
+  margin-top: 42%;
 }
 .events {
   position: fixed;
@@ -116,12 +118,8 @@ label {
   height: 0;
   clear: both;
 }
-.events.editing .event {
-  padding-top: 80px;
-}
 .events.editing .event input,
 .events.editing .event .event-remove {
-  opacity: 1;
   display: inline-block;
 }
 .events.editing .event .event-name {

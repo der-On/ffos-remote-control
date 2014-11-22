@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
   <title>Firefox OS - remote control</title>
 
   <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css" />
@@ -13,7 +14,7 @@
          rv-data-name="event.name"
          rv-on-click="app.emitEvent | bind app event"
          class="event">
-      <span class="event-name">{ event.name }</span>
+      <div class="event-name">{ event.name }</div>
       <input type="text" rv-value="event.name" />
       <a class="btn event-remove" href="javascript:void(0);" rv-on-click="app.removeEvent | bind app event">
         <i class="fa fa-trash fa-lg"></i>
