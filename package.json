@@ -17,6 +17,7 @@
     "localforage": "^1.1.1",
     "rivets": "^0.7.1",
     "socket.io": "^1.2.1",
-    "socket.io-client": "^1.2.1"
+    "socket.io-client": "^1.2.1",
+    "node-static": "^0.7.6"
   }
 }

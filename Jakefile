@@ -1,6 +1,8 @@
 var path = require('path');
 var tools = require('jake-tools');
+var http = require('http');
 var server = require('./server');
+var staticServer = require('node-static');
 
 var browserifyOpts = {
   src: [path.join(__dirname, 'ffos', 'javascripts', 'app.js')],
@@ -10,7 +12,7 @@ var browserifyOpts = {
   debug: true,
   baseDir: __dirname,
   'package': path.join(__dirname, 'package.json'),
-  vendorExclude: ['font-awesome', 'socket.io']
+  vendorExclude: ['font-awesome', 'socket.io', 'node-static']
 };
 
 var lessOpts = {
@@ -38,6 +40,19 @@ desc('builds/compiles files');
 task('build', ['browserify', 'less'], function buildTask() {});
 
 desc('serves the socket.io server. Usage jake server[[port]]');
-task('server', {async:true}, function serveTask(port) {
+task('server', {async:true}, function serverTask(port) {
   server(port);
+});
+
+desc('serves static files. Usage jake static-server[[port]]');
+task('static-server', {async:true}, function staticServerTask(port) {
+  port = port || 8000;
+  var server = new staticServer.Server('./');
+  http.createServer(function(req, res) {
+    req.addListener('end', function() {
+      server.serve(req, res);
+    }).resume();
+  }).listen(port);
+
+  console.log('static server listening on http://localhost:' + port);
 });
