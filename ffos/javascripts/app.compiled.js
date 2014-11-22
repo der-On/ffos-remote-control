@@ -3,6 +3,11 @@ var io = require('socket.io-client');
 var rivets = require('rivets');
 var localforage = require('localforage');
 
+localforage.config({
+  driver: localforage.LOCALSTORAGE,
+  name: 'ffos-remote-control'
+});
+
 rivets.formatters.bind = function(/*fn, thisArg[, arg1, arg2, ..., argN]*/)
 {
   var args = Array.prototype.slice.call(arguments);
@@ -37,6 +42,7 @@ var app = (function() {
   this.addEvent = function(name)
   {
     this.events.push(new Event(name));
+    this.newEventName = '';
     this.saveEvents();
   };
 
@@ -55,7 +61,7 @@ var app = (function() {
     // prevent accidental hitting while in edit mode
     if (this.editing) return;
 
-    this.socket.emit(name);
+    this.socket.emit('message', name);
   };
 
   this.toggleEditing = function()

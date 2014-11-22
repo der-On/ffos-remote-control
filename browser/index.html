@@ -3,9 +3,30 @@
 <head lang="en">
   <meta charset="UTF-8">
   <title>Firefox OS - remote control client</title>
-  <script src="javascripts/browser.js"></script>
 </head>
-<body>
+<body id="app">
+  <form action="javascript:void(0);"
+        rv-on-submit="app.connect | bind app app.host app.port"
+        rv-unless="app.socket">
+    <label>
+      Host:
+      <input type="text" rv-value="app.host" />
+    </label>
+    <label>
+      Port:
+      <input type="text" rv-value="app.port" />
+    </label>
+    <button type="submit">Connect</button>
+  </form>
+  <p rv-if="app.socket">
+    connected to: { app.host }:{ app.port}
+  </p>
+  <ul class="messages">
+    <li rv-each-message="app.messages">{ message.date }: { message.name }</li>
+  </ul>
 
+  <script src="../node_modules/socket.io-client/socket.io.js"></script>
+  <script src="../node_modules/rivets/dist/rivets.bundled.min.js"></script>
+  <script src="javascripts/app.js"></script>
 </body>
 </html>

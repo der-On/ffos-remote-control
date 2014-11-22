@@ -1,5 +1,6 @@
 var path = require('path');
 var tools = require('jake-tools');
+var server = require('./server');
 
 var browserifyOpts = {
   src: [path.join(__dirname, 'ffos', 'javascripts', 'app.js')],
@@ -13,8 +14,8 @@ var browserifyOpts = {
 };
 
 var lessOpts = {
-  src: [path.join(__dirname, 'ffos', 'less', '*.less')],
-  dest: path.join(__dirname, 'ffos', 'css')
+  src: [path.join('./ffos', 'less', '*.less')],
+  dest: path.join('./ffos', 'css')
 };
 
 desc('compiles less files');
@@ -35,3 +36,8 @@ task('watch', {async: true}, function watchTask() {
 
 desc('builds/compiles files');
 task('build', ['browserify', 'less'], function buildTask() {});
+
+desc('serves the socket.io server. Usage jake server[[port]]');
+task('server', {async:true}, function serveTask(port) {
+  server(port);
+});
