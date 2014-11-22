@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Firefox OS - remote control</title>
+
+  <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body id="app">
+  <div class="events" rv-class-editing="app.editing">
+    <div rv-each-event="app.events"
+         rv-data-name="event.name"
+         rv-on-click="app.emitEvent | bind app event"
+         class="event">
+      <span class="event-name">{ event.name }</span>
+      <input type="text" rv-value="event.name" />
+      <a class="btn event-remove" href="javascript:void(0);" rv-on-click="app.removeEvent | bind app event">
+        <i class="fa fa-trash fa-lg"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer" rv-if="app.inited">
+    <form action="javascript:void(0);" rv-on-submit="app.addEvent | bind app app.newEventName">
+      <input type="text" rv-value="app.newEventName" />
+      <button class="btn add-new-event">
+        <i class="fa fa-plus"></i>
+      </button>
+
+      <a class="btn toggle-editing pull-right" href="javascript:void(0);" rv-on-click="app.toggleEditing | bind app">
+        <i class="fa fa-pencil fa-lg"></i>
+      </a>
+    </form>
+  </div>
+
+  <div class="setup-dialog" rv-unless="app.inited">
+    <form action="javascript:void(0);" rv-on-submit="app.init | bind app">
+      <label>
+        Host: <input type="url" rv-value="app.host" />
+      </label><br/><br/>
+      <label>
+        Port: <input type="number" rv-value="app.port" min="0" max="10000" step="1" />
+      </label><br/><br/>
+      <button type="submit" class="btn init">
+        Start
+      </button>
+    </form>
+  </div>
+
+  <script src="javascripts/vendors.compiled.js"></script>
+  <script src="javascripts/app.compiled.js"></script>
+</body>
+</html>

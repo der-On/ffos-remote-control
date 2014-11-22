@@ -1,0 +1,22 @@
+{
+  "name": "ffos-remote-control",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.anzui.de:ondrej/ffos-remote-control.git"
+  },
+  "author": "Ondrej Brinkel <info@anzui.de>",
+  "license": "MIT",
+  "dependencies": {
+    "font-awesome": "^4.2.0",
+    "localforage": "^1.1.1",
+    "rivets": "^0.7.1",
+    "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1"
+  }
+}
