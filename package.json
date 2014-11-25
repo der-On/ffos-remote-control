@@ -15,9 +15,12 @@
   "dependencies": {
     "font-awesome": "^4.2.0",
     "localforage": "^1.1.1",
+    "node-static": "^0.7.6",
     "rivets": "^0.7.1",
     "socket.io": "^1.2.1",
-    "socket.io-client": "^1.2.1",
-    "node-static": "^0.7.6"
+    "socket.io-client": "^1.2.1"
+  },
+  "devDependencies": {
+    "jake-web-utils": "0.0.1"
   }
 }

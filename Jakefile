@@ -1,5 +1,5 @@
 var path = require('path');
-var tools = require('jake-tools');
+var tools = require('jake-web-utils');
 var http = require('http');
 var server = require('./server');
 var staticServer = require('node-static');
@@ -12,7 +12,7 @@ var browserifyOpts = {
   debug: true,
   baseDir: __dirname,
   'package': path.join(__dirname, 'package.json'),
-  vendorExclude: ['font-awesome', 'socket.io', 'node-static']
+  vendorExclude: ['font-awesome', 'socket.io', 'node-static', 'jake-web-utils']
 };
 
 var lessOpts = {
